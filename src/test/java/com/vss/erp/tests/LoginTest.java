@@ -2,6 +2,7 @@ package com.vss.erp.tests;
 
 import com.vss.erp.pages.DashboardPage;
 import com.vss.erp.pages.LoginPage;
+import com.vss.erp.utils.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,10 @@ public class LoginTest {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private final String baseUrl = "https://0001.anterp.net/";
+//    private final String baseUrl = "https://0001.anterp.net/";
+    String baseUrl = ConfigReader.get("baseUrl");
+    String username = ConfigReader.getEnv("ERP_USERNAME");
+    String password = ConfigReader.getEnv("ERP_PASSWORD");
 
     @BeforeMethod
     public void setUp() {
@@ -37,8 +41,13 @@ public class LoginTest {
 
     @Test(description = "Valid username and password should navigate to dashboard")
     public void validLogin_shouldOpenDashboard() {
+        driver.get(ConfigReader.get("baseUrl"));
+
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginAs("VSS", "VSS800"); // replace with secure retrieval later
+        loginPage.loginAs(
+                ConfigReader.getEnv("ERP_USERNAME"),
+                ConfigReader.getEnv("ERP_PASSWORD")
+        );
 
         // Wait until the dashboard menu shows
         wait.until(ExpectedConditions.visibilityOfElementLocated(
