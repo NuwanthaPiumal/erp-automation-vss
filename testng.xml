@@ -1,8 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="VSS ERP Suite">
-    <test name="Login Tests">
+<!--    <test name="Login Tests">-->
+<!--        <classes>-->
+<!--            <class name="com.vss.erp.tests.LoginTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="Customer Test">
         <classes>
-            <class name="com.vss.erp.tests.LoginTest"/>
+            <class name="com.vss.erp.tests.CustomerTest"/>
         </classes>
     </test>
 </suite>
